@@ -13,15 +13,12 @@ Create a function to check two given numbers and return true if one of the numbe
 
 const checkTwoNumbers = (n1, n2) => ((n1 === 50 || n2 === 50) || (n1 + n2 === 50)) ? true : false
 
-
-
 /*
 3)
 Create a function to remove a character at the specified position of a given string and return the new string.
 */
 
 const removeCharAtIndex = (str, index) => str.split("").filter(letter => str.split("").indexOf(letter) !== index).join("")
-
 
 
 /*
@@ -51,7 +48,7 @@ const alternative = (n1, n2, n3) => {
     */
 
 const checkTwoNumbersRanges = (n1, n2) =>
-    ((n1 >= 40 && n1 <= 60 || n1 >= 70 && n1 <= 100) && (n2 >= 40 && n1 <= 60 || n2 >= 70 && n2 <= 100)) ? true : false
+    ((n1 >= 40 && n1 <= 60 || n1 >= 70 && n1 <= 100) && (n2 >= 40 && n2 <= 60 || n2 >= 70 && n2 <= 100)) ? true : false
 
 
 /*
@@ -98,6 +95,7 @@ Create a function to test whether an array of integers of length 2 does not cont
 
 const testArrayNot = (arr) => (arr.indexOf(1) === -1 && arr.indexOf(3) === -1) ? true : false
 
+console.log(testArrayNot([4, 28]));
 /*
     11)
 
@@ -236,7 +234,6 @@ const convertNumberToString = (n) => {
     let resString = ''
     if (n % 3 === 0) {
         resString += "Diego"
-
     }
     if (n % 5 === 0) {
         resString += "Riccardo"
@@ -257,3 +254,5 @@ Create a function that given a phrase returns its acronym, like British Broadcas
 */
 
 const acronym = (str) => str.split(' ').reduce((acc, curr) => acc + curr.slice(0, 1).toUpperCase(), "")
+
+console.log(acronym("British Broadcasting Corporation"));

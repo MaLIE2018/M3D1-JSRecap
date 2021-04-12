@@ -20,13 +20,13 @@ const maxChar = (str) => {
         }
     }
     for (let [key, value] of res) {
-        console.log(key, typeof(value));
         if (value > most[1]) {
             most = [key, value]
         }
     }
     return most[0]
 }
+
 
 /* 2) ANAGRAMS
 
@@ -57,31 +57,39 @@ const mapFromCharacters = (str) => {
 
 const anagrams = (str1, str2) => {
     let map1 = mapFromCharacters(str1)
-
     let map2 = mapFromCharacters(str2)
 
     if (map1.size !== map2.size) {
         return false
     }
     for (let [key, value] of map1) {
-        if (!map2.has(key) && !(map2.get(key) !== value)) {
+        if (map2.has(key) && map2.get(key) !== value) {
             return false
         }
     }
     return true
 }
-console.log(anagrams('Hi there', 'Bye there'))
-    /* 3) ANAGRAMS 2
 
-    Given a word and a list of possible anagrams, select the correct sublist.
 
-    --- Examples 
 
-        "listen" and a list of candidates like "enlists" "google" "inlets" "banana" the program should return a list containing "inlets".
-    */
+/* 3) ANAGRAMS 2
 
-const checkAnagrams = (word, candidates) => {
+Given a word and a list of possible anagrams, select the correct sublist.
 
+--- Examples 
+
+    "listen" and a list of candidates like "enlists" "google" "inlets" "banana" 
+    the program should return a list containing "inlets".
+*/
+
+const checkCandidates = (word, candidates) => {
+    let res = []
+    for (let i = 0; i < candidates.length; i++) {
+        if (anagrams(word, candidates[i])) {
+            res.push(candidates[i])
+        }
+    }
+    return res
 }
 
 /* 4) PALINDROME
@@ -97,6 +105,8 @@ and punctuation in determining if the string is a palindrome.
     palindrome("abcdefg") === false
  */
 
+const palindrome = (str) => str.split("").reverse().join("") === str ? true : false
+
 /* 5) REVERSE INT
 
 Given an integer, return an integer that is the reverse
@@ -110,6 +120,14 @@ ordering of numbers.
     reverseInt(-15) === -51
     reverseInt(-90) === -9
  */
+
+const reverseInt = (n) => {
+    if (n.toString().startsWith("-")) {
+        return `-${n.toString().slice(1).split("").reverse().join("")}`
+    } else {
+        return n.toString().split("").reverse().join("")
+    }
+}
 
 /* 6) STEPS
 
@@ -133,6 +151,14 @@ step has spaces on the right hand side!
         '### '
         '####' */
 
+
+const steps = (N) => {
+    for (let i = 1; i <= N; i++) {
+        console.log(`'${"#".repeat(i)}${" ".repeat(N-i)}'\n`)
+    }
+}
+
+
 /* 7) REVERSE STRING
 
 Given a string, return a new string with the reversed
@@ -144,6 +170,9 @@ order of characters
     reverse('hello') === 'olleh'
     reverse('Greetings!') === '!sgniteerG'
  */
+
+const reverse = (str) => str.split("").reverse().join("")
+
 
 /* 8) CHUNK
 
@@ -158,6 +187,29 @@ where each subarray is of length size
     chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
     chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 */
+
+const chunk = (arr, size) => {
+    let res = []
+    let iterations
+    if (size > arr.length) {
+        iterations = 1
+    } else {
+        if (arr.length % 2 === 0) {
+            iterations = arr.length / 2 - 1
+        } else if (arr.length % 2 !== 0) {
+            iterations = arr.length / 2
+        }
+    }
+
+    for (let i = 0; i < parseInt(iterations); i++) {
+        if (i * size + size > arr.length) {
+            res.push(arr.slice(i * size))
+        } else {
+            res.push(arr.slice(i * size, i * size + size))
+        }
+    }
+    console.log(res)
+}
 
 /* 9) PYRAMID
 
@@ -177,6 +229,13 @@ pyramid has spaces on both the left and right hand sides
         '  #  '
         ' ### '
         '#####' */
+
+const pyramid = (N) => {
+    for (let i = 0; i < N; i++) {
+        console.log(`'${" ".repeat(N-i-1)}${"#".repeat(i*2+1)}${" ".repeat(N-i-1)}'\n`)
+    }
+}
+
 
 /* 10) SPYRAL MATRIX
 
@@ -199,3 +258,18 @@ and returns a NxN spiral matrix.
         [10,  9,  8, 7]]
 
 */
+
+const matrix = (N) => {
+    res = []
+    inner = []
+    for (let i = 1; i <= N; i++) {
+        inner = []
+        for (let j = 1; j <= N; j++) {
+            inner.push(i * j)
+        }
+        res.push(inner)
+    }
+    console.log(res)
+}
+
+matrix(3)
