@@ -274,7 +274,6 @@ const matrix = (N) => {
     for (let i = 0; i <= 1; i++) {
         //horizontal from left to right
         while (col < colend) {
-            console.log("horLtoR", i, index)
             res[row][col] = index
             col++
             index++
@@ -283,7 +282,6 @@ const matrix = (N) => {
         index--
         //vertical from top to bottom
         while (row < rowend) {
-            console.log("verTtoB", i, index)
             res[row][col] = index
             row++
             index++
@@ -292,7 +290,6 @@ const matrix = (N) => {
         col--
         //horizontal from right to left
         while (colstart <= col) {
-            console.log("horRtoL", i, index)
             res[row][col] = index
             index++
             col--
@@ -301,7 +298,6 @@ const matrix = (N) => {
         row--
         //vertical from bottom to top
         while (rowstart < row) {
-            console.log("verBtoT", i, index)
             res[row][col] = index
             row--
             index++
