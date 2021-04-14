@@ -260,16 +260,60 @@ and returns a NxN spiral matrix.
 */
 
 const matrix = (N) => {
+    let colstart = 0
+    let colend = N
+    let rowend = N
+    let rowstart = 0
+    let col = 0
+    let row = 0
+    let index = 1
     res = []
-    inner = []
-    for (let i = 1; i <= N; i++) {
-        inner = []
-        for (let j = 1; j <= N; j++) {
-            inner.push(i * j)
-        }
-        res.push(inner)
+    for (let i = 0; i < N; i++) {
+        res[i] = Array(N).fill(1)
     }
-    console.log(res)
+    for (let i = 0; i <= 1; i++) {
+        //horizontal from left to right
+        while (col < colend) {
+            console.log("horLtoR", i, index)
+            res[row][col] = index
+            col++
+            index++
+        }
+        col--
+        index--
+        //vertical from top to bottom
+        while (row < rowend) {
+            console.log("verTtoB", i, index)
+            res[row][col] = index
+            row++
+            index++
+        }
+        row--
+        col--
+        //horizontal from right to left
+        while (colstart <= col) {
+            console.log("horRtoL", i, index)
+            res[row][col] = index
+            index++
+            col--
+        }
+        col++
+        row--
+        //vertical from bottom to top
+        while (rowstart < row) {
+            console.log("verBtoT", i, index)
+            res[row][col] = index
+            row--
+            index++
+        }
+        row++
+        col++
+        colend--
+        colstart++
+        rowstart++
+        rowend--
+    }
+    console.log(res);
 }
 
-matrix(3)
+matrix(4)
